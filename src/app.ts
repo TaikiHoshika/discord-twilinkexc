@@ -18,7 +18,12 @@ client.on(Events.MessageCreate, async (message) => {
     if(message.author.bot) { return; }
     const regex = new RegExp("https://(twitter|x).com.*/status/");
     if(regex.test(message.content)) {
-        await message.reply(message.content.replace(new RegExp("https://(twitter|x).com"), "https://vxtwitter.com"));
+        await message.reply({
+            content: message.content.replace(new RegExp("https://(twitter|x).com"), "https://vxtwitter.com"),
+            allowedMentions: {
+                repliedUser: false
+            }
+        });
     }
 });
 
